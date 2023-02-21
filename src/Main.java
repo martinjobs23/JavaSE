@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import Person.*;
+=======
+>>>>>>> 9415f5db19f4253bd4479be8726cc774d500bc36
 import stu.*;
 
 import java.util.Scanner;
@@ -63,6 +66,7 @@ public class Main{
 //        System.out.println(stu.getAge(3,0));
 //        Eat eat = new ArtStu();
 //        eat.eat();
+<<<<<<< HEAD
 //        Student student = new Student();
 //        student.setStatus(Status.Running);
 //        System.out.println(student.getStatus()) ;
@@ -84,6 +88,16 @@ public class Main{
             System.out.println("不能参加考试。");
         }
     }
+=======
+        Student student = new Student();
+        student.setStatus(Status.Running);
+        System.out.println(student.getStatus()) ;
+        Integer i ;
+
+
+    }
+
+>>>>>>> 9415f5db19f4253bd4479be8726cc774d500bc36
     private static void test(int arr[]){
         arr[0] = 10;
     }
