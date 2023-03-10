@@ -3,11 +3,11 @@ package collection;
 import java.util.NoSuchElementException;
 
 public class LinkedStack<E> {
-    private LinkedStack.Node<E> head = new LinkedStack.Node<>(null);
+    private Node<E> head = new Node<>(null);
     private int size = 0;
     private static class Node<E> {
         E element;
-        LinkedStack.Node<E> next;
+        Node<E> next;
         public Node(E element){
             this.element  = element;
         }
