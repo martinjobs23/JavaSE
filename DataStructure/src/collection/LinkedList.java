@@ -3,7 +3,7 @@ package collection;
 public class LinkedList<E> {
     private Node<E> head = new Node<>(null);
     private int size = 0;
-    private static class Node<E> {
+    public static class Node<E> {
         E element;
         Node<E> next;
         public Node(E element){

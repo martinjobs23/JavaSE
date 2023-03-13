@@ -21,16 +21,16 @@ public class Main {
 //        System.out.println(arrayList);
 //        integer = arrayList.get_element(31);
 //        System.out.println(integer);
-//        LinkedList<Integer> linkedListList = new LinkedList<>();
-//        linkedListList.insert_element(10,0);
-//        linkedListList.insert_element(10,1);
+//        LinkedList<Integer> linkedList = new LinkedList<>();
+//        linkedList.insert_element(10,0);
+//        linkedList.insert_element(10,1);
 //        for (int i = 0; i < 30; i++) {
-//            linkedListList.insert_element(i,i);
+//            linkedList.insert_element(i,i);
 //        }
-//        System.out.println(linkedListList);
-//        System.out.println(linkedListList.remove_element(20));
-//        System.out.println(linkedListList);
-//        System.out.println(linkedListList.get_element(30));
+//        System.out.println(linkedList);
+//        System.out.println(linkedList.remove_element(20));
+//        System.out.println(linkedList);
+//        System.out.println(linkedList.get_element(30));
 //        LinkedStack<Integer> linkedStack = new LinkedStack<>();
 //        System.out.println(linkedStack.isEmpty());
 //        linkedStack.push(10);
@@ -62,34 +62,44 @@ public class Main {
 //        treeNode2.left = treeNode4;
 //        treeNode2.right = treeNode5;
 //        System.out.println(treeNode1.left.right.element);
-        TreeNode<Character> a = new TreeNode<>('A');
-        TreeNode<Character> b = new TreeNode<>('B');
-        TreeNode<Character> c = new TreeNode<>('C');
-        TreeNode<Character> d = new TreeNode<>('D');
-        TreeNode<Character> e = new TreeNode<>('E');
-        TreeNode<Character> f = new TreeNode<>('F');
-        TreeNode<Character> g = new TreeNode<>('G');
-        TreeNode<Character> h = new TreeNode<>('H');
-        TreeNode<Character> i = new TreeNode<>('I');
-        TreeNode<Character> j = new TreeNode<>('J');
-        TreeNode<Character> k = new TreeNode<>('K');
-        TreeNode<Character> l = new TreeNode<>('L');
-        a.left = b;
-        a.right = c;
-        b.left = d;
-        b.right = e;
-        c.left = f;
-        c.right = g;
-        e.left = h;
-        e.right = i;
-        f.left = j;
-        f.right = k;
-        g.right = l;
-        preOrder(a);
-        System.out.println();
-        inOrder(a);
-        System.out.println();
-        postOrder(a);
+//        TreeNode<Character> a = new TreeNode<>('A');
+//        TreeNode<Character> b = new TreeNode<>('B');
+//        TreeNode<Character> c = new TreeNode<>('C');
+//        TreeNode<Character> d = new TreeNode<>('D');
+//        TreeNode<Character> e = new TreeNode<>('E');
+//        TreeNode<Character> f = new TreeNode<>('F');
+//        TreeNode<Character> g = new TreeNode<>('G');
+//        TreeNode<Character> h = new TreeNode<>('H');
+//        TreeNode<Character> i = new TreeNode<>('I');
+//        TreeNode<Character> j = new TreeNode<>('J');
+//        TreeNode<Character> k = new TreeNode<>('K');
+//        TreeNode<Character> l = new TreeNode<>('L');
+//        a.left = b;
+//        a.right = c;
+//        b.left = d;
+//        b.right = e;
+//        c.left = f;
+//        c.right = g;
+//        e.left = h;
+//        e.right = i;
+//        f.left = j;
+//        f.right = k;
+//        g.right = l;
+//        preOrder(a);
+//        System.out.println();
+//        inOrder(a);
+//        System.out.println();
+//        postOrder(a);
+//        System.out.println();
+//        levelOrder(a);
+        HashTable<Integer> h= new HashTable();
+        h.insert_element(20);
+        h.insert_element(30);
+        for (int i = 0; i < 100; i++) {
+            h.insert_element(i);
+        }
+        System.out.println(h.contains(20));
+        System.out.println(h);
     }
     public static void preOrder(TreeNode<Character> rootnode){
         if (rootnode == null) return ;
@@ -108,6 +118,20 @@ public class Main {
         postOrder(rootnode.left);
         postOrder(rootnode.right);
         System.out.print(rootnode.element + " ");
+    }
+    public static void levelOrder(TreeNode<Character> rootnode){
+        LinkedQueue<TreeNode<Character>> lq = new LinkedQueue<>();
+        if (rootnode != null) lq.offer(rootnode);
+        while(!lq.isEmpty()){
+            TreeNode<Character> treeNode = lq.poll();
+            System.out.print(treeNode.element + " ");
+            if (treeNode.left != null){
+                lq.offer(treeNode.left);
+            }
+            if (treeNode.right != null){
+                lq.offer(treeNode.right);
+            }
+        }
     }
     //    public static void main(String[] args) {
 //        Supplier<Student> studentSupplier = () -> new Student();
