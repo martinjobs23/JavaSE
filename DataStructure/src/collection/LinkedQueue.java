@@ -35,7 +35,7 @@ public class LinkedQueue<E> {
     }
     public E peek(){
         if(isEmpty()){
-            throw new NoSuchElementException("空队列，无法删除。");
+            throw new NoSuchElementException("空队列");
         }
         return head.next.element;
     }

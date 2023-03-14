@@ -30,6 +30,12 @@ public class LinkedStack<E> {
         size--;
         return node.element;
     }
+    public E peek(){
+        if(isEmpty()){
+            throw new NoSuchElementException("空队列");
+        }
+        return head.next.element;
+    }
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
         LinkedStack.Node<E> node = head.next;

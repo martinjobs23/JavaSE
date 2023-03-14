@@ -1,5 +1,7 @@
+import Test.LinkedReverse;
 import collection.*;
 
+import javax.swing.text.html.ListView;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -92,14 +94,30 @@ public class Main {
 //        postOrder(a);
 //        System.out.println();
 //        levelOrder(a);
-        HashTable<Integer> h= new HashTable();
-        h.insert_element(20);
-        h.insert_element(30);
-        for (int i = 0; i < 100; i++) {
-            h.insert_element(i);
+//        HashTable<Integer> h= new HashTable();
+//        h.insert_element(20);
+//        h.insert_element(30);
+//        for (int i = 0; i < 100; i++) {
+//            h.insert_element(i);
+//        }
+//        System.out.println(h.contains(20));
+//        System.out.println(h);
+        LinkedReverse lr = new LinkedReverse();
+        for (int i = 0; i < 10; i++) {
+            lr.insert(i);
         }
-        System.out.println(h.contains(20));
-        System.out.println(h);
+        System.out.println(lr);
+        lr.reverse_element();
+        ListNode listNode1 = new ListNode(1,null);
+        ListNode listNode2 = new ListNode(2,listNode1);
+        ListNode listNode3 = new ListNode(3,listNode2);
+        ListNode listNode4 = new ListNode(4,listNode3);
+        ListNode listNode5 = new ListNode(5,listNode4);
+        ListNode listNode6 = new ListNode(6,listNode5);
+        System.out.println(reverseList(listNode6));
+        String str = new String("({[])");
+        boolean b = isValid(str);
+        System.out.println(b);
     }
     public static void preOrder(TreeNode<Character> rootnode){
         if (rootnode == null) return ;
@@ -145,5 +163,40 @@ public class Main {
     private static void test(String str){
         Integer integer = Optional.ofNullable(str).map(String::length).get();
         System.out.println(integer);
+    }
+     public static class ListNode {
+         int val;
+          ListNode next;
+          ListNode() {}
+          ListNode(int val) { this.val = val; }
+          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     }
+     public static ListNode reverseList(ListNode head) {
+        ListNode prev = null,node = head;
+        while(node != null){
+            ListNode node1 = node;
+            node = node.next;
+            node1.next = prev;
+            prev = node1;
+        }
+        return prev;
+    }
+    public static boolean isValid(String str){
+        LinkedStack<Character> ls= new LinkedStack<>();
+        char[] chars = str.toCharArray();
+        for (int i = 0; i < str.length(); i++) {
+            char character = chars[i];
+            if (character == '{' || character == '(' || character == '[' ){
+                ls.push(character);
+            } else {
+                if(ls.isEmpty()) return false;
+                char c1 = ls.pop();
+                if (character == '}' && c1 != '{') return false;
+                if (character == ')' && c1 != '(') return false;
+                if (character == ']' && c1 != '[') return false;
+            }
+        }
+        if (ls.isEmpty())return true;
+        else return false;
     }
 }
