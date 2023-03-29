@@ -1,5 +1,4 @@
 import sun.awt.shell.ShellFolder;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
@@ -22,22 +21,6 @@ public class GetFileIcon {
         //GetFileIcon.getIcon1();
         GetFileIcon.getIcon2();
 
-        String path="D:\\TencentDocs.exe_64(2).png";
-        File file=new File(path);
-        BufferedImage bufferedImage;
-        try {
-            //图片转base64
-            bufferedImage=ImageIO.read(file) ;
-            ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
-            ImageIO.write(bufferedImage,"png",outputStream);
-            byte[] bytes=outputStream.toByteArray();
-            String base64String= Base64.getEncoder().encodeToString(bytes);
-            System.out.println(base64String);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
     }
     /**
      * 参考网址：https://blog.csdn.net/weixin_34023863/article/details/91560836
@@ -68,36 +51,45 @@ public class GetFileIcon {
      * 第二种形式获取icon,利用通过awt.shellFolder获取图标
      * 获取的32*32 比较清晰，可以使用
      */
-    public static void getIcon2() throws FileNotFoundException {
-        File file = new File("D:\\Program Files\\TencentDocs\\TencentDocs.exe");
+    public static void getIcon2() {
+        File file = new File("C:\\Users\\DELL\\Desktop\\学业相关\\20230206程序打包\\Setup.exe");
         // 图标保存地址
 //        OutputStream inStream = new FileOutputStream(new File("D:\\TencentDocs.exe_64(2).png"));
-        try {
-            // 通过awt.shellFolder获取图标 默认为32 *32
-            ShellFolder shellFolder = ShellFolder.getShellFolder(file);
-            ImageIcon icon = new ImageIcon(shellFolder.getIcon(true));
+        // 通过awt.shellFolder获取图标 默认为32 *32
+//            ShellFolder shellFolder = ShellFolder.getShellFolder(file);
+//            ImageIcon icon = new ImageIcon(shellFolder.getIcon(true));
+        Image icon = ((ImageIcon) FileSystemView.getFileSystemView().getSystemIcon(file)).getImage();
 
-            int width = 32;
-            int height = 32;
-            BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
-            Graphics g = bi.getGraphics();
-            g.drawImage(icon.getImage(),0,0,width,height,null);
-            g.dispose();
-            File f = new File("D:\\TencentDocs.exe_64(2).png");
-            try {
-                ImageIO.write(bi, "png", f);
-            } catch (IOException e) {
-                //log.error("写png文件失败",e);
-            }
+        int width = 32;
+        int height = 32;
+        BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+        Graphics g = bi.getGraphics();
+        g.drawImage(icon,0,0,width,height,null);
+        g.dispose();
+        try {
+            //图片转base64
+            //bi = ImageIO.read(file) ;
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(bi,"png",outputStream);
+            byte[] bytes = outputStream.toByteArray();
+            String base64String = Base64.getEncoder().encodeToString(bytes);
+            System.out.println(base64String);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
 //            BufferedImage imgIcon = (BufferedImage) icon.getImage();
 //            // 调整icon图标大小，放大后会模糊
 //            imgIcon = resize(imgIcon,256,256);
 //            ImageIO.write(imgIcon, "png", inStream);
 //            inStream.flush();
 //            inStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+
+
     }
     /**
      * 调整大小

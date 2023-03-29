@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 public class Example extends JFrame {
@@ -33,7 +35,18 @@ public class Example extends JFrame {
 //            System.out.println(iterator.next());
 //        }
 //        list.forEach(System.out::print);
-        Queue<String> queue = new LinkedList<>();
+//
+        Queue<Integer> queue = new LinkedList<>(Arrays.asList(1, 9, 8, 0, 4, 6, 7));
+//        queue.offer("aaa");
+//        queue.offer("bbb");
+//        queue.offer("ccc");
+//        while (!queue.isEmpty()){
+//            System.out.println(queue.poll());
+//        }
+        System.out.println(Collections.max(queue));
+    }
+
+    public static void test(Queue queue){
         queue.offer("aaa");
         queue.offer("bbb");
         queue.offer("ccc");
